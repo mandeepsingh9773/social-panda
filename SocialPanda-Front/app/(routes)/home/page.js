@@ -1,12 +1,13 @@
-import React from 'react'
-import Banner from './_components/Banner'
+"use client";
+import React, { useEffect, useState } from "react";
+import Banner from "./_components/Banner";
+import { useUser } from "@clerk/nextjs";
 
 function Home() {
-  return (
-    <div className='p-5'>
-      <Banner/>
-    </div>
-  )
+  const { user } = useUser();
+
+  return <div className="p-5 px-10">{!user && <Banner />}</div>;
+
 }
 
-export default Home
+export default Home;
