@@ -1,4 +1,5 @@
-const { defaut: mongoose } = require("mongoose");
+const { default: mongoose } = require("mongoose");
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -10,5 +11,6 @@ const userSchema = new mongoose.Schema({
   },
   image: String,
 });
+
 
 module.exports = mongoose.model("user", userSchema);
