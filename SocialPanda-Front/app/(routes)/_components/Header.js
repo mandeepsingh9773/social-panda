@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Menu, MenuSquare } from "lucide-react";
+import { UserButton, useUser } from "@clerk/nextjs";
 import React from "react";
 import Link from "next/link";
 
 function Header({ toggleSideBar }) {
+  const user = useUser();
   return (
     <div className="p-5 flex justify-between md:justify-end shadow-sm bg-white items-center">
       <Menu
@@ -11,14 +13,18 @@ function Header({ toggleSideBar }) {
          text-slate-500 cursor-pointer"
         onClick={() => toggleSideBar()}
       />
-      <Link href="/sign-up">
-        <Button
-          className="bg-blue-500 
+      {user ? (
+        <UserButton />
+      ) : (
+        <Link href="/sign-up">
+          <Button
+            className="bg-blue-500 
         hover:bg-blue-600 shadow-sm"
-        >
-          Get Started
-        </Button>
-      </Link>
+          >
+            Get Started
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }
